@@ -1,0 +1,1 @@
+rootProject.name = "com.departementle_server.hugofab.deparmentle_server"
