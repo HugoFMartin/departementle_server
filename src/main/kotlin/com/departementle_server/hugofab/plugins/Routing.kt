@@ -12,11 +12,11 @@ import io.ktor.server.request.*
 fun Application.configureRouting(a: DepartementDataSourceImpl) {
 
     routing {
-        get("/get-daily") {
+        get("/daily") {
             val dailyDep = a.getDailyDepartement()
             call.respond(dailyDep)
         }
-        get("/get-departement-name") {
+        get("/departements") {
             val depNames = a.getAllDepartementName()
             call.respond(depNames)
         }
