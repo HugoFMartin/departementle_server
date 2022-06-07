@@ -11,12 +11,10 @@ fun main() {
     val client = KMongo.createClient().coroutine
     val database = client.getDatabase("departement_db")
 
-    val a = DepartementDataSourceImpl(database)
+    val departementDataSourceImpl = DepartementDataSourceImpl(database)
 
     embeddedServer(Netty, port = 8080, host = "192.168.1.85") {
-
-
-        configureRouting(a)
+        configureRouting(departementDataSourceImpl)
         configureSerialization()
     }.start(wait = true)
 }

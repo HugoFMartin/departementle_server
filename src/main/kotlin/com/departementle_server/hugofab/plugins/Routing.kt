@@ -9,20 +9,20 @@ import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.request.*
 
-fun Application.configureRouting(a: DepartementDataSourceImpl) {
+fun Application.configureRouting(departementDataSourceImpl: DepartementDataSourceImpl) {
 
     routing {
         get("/daily") {
-            val dailyDep = a.getDailyDepartement()
+            val dailyDep = departementDataSourceImpl.getDailyDepartement()
             call.respond(dailyDep)
         }
         get("/departements") {
-            val depNames = a.getAllDepartementName()
+            val depNames = departementDataSourceImpl.getAllDepartementName()
             call.respond(depNames)
         }
         post("/try-daily") {
             val departementTry = call.receive<Try>()
-            val respond = a.tryDepartement(departementTry.name)
+            val respond = departementDataSourceImpl.tryDepartement(departementTry.name)
             call.respondText(respond.toString(), status = HttpStatusCode.OK)
         }
     }
