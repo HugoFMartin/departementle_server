@@ -40,6 +40,10 @@ class DepartementDataSourceImpl(
         return departementCollection.distinct<String>("name").toList()
     }
 
+    override suspend fun tryDepartement(departementName: String): Boolean {
+        return departementName == this.departement!!.name
+    }
+
 
     private suspend fun updateGuessedDepartement() {
         departementCollection.updateOne(Filters.eq("id", this.departement!!.id), Updates.set("guessed", true) )

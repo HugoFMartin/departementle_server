@@ -7,4 +7,6 @@ interface DepartementDataSource {
     suspend fun getDailyDepartement(): Departement
 
     suspend fun getAllDepartementName(): List<String>
+
+    suspend fun tryDepartement(departementName: String): Boolean
 }
