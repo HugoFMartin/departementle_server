@@ -1,7 +1,6 @@
 package com.departementle_server.hugofab.plugins
 
 import com.departementle_server.hugofab.data.datasource.DepartementDataSourceImpl
-import com.departementle_server.hugofab.data.model.GuessDepartement
 import io.ktor.server.routing.*
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -20,8 +19,8 @@ fun Application.configureRouting(departementDataSourceImpl: DepartementDataSourc
             call.respond(depNames)
         }
         post("/guess") {
-            val departementTry = call.receive<GuessDepartement>()
-            val respond = departementDataSourceImpl.guessDepartement(departementTry.guessDepartementName)
+            val departementGuess = call.receive<String>()
+            val respond = departementDataSourceImpl.guessDepartement(departementGuess)
             if (respond) {
                 call.respondText("guess right", status = HttpStatusCode.OK)
             } else {
