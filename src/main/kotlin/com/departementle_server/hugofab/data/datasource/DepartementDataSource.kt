@@ -8,5 +8,5 @@ interface DepartementDataSource {
 
     suspend fun getAllDepartementName(): List<String>
 
-    suspend fun tryDepartement(departementName: String): Boolean
+    suspend fun guessDepartement(departementName: String): Boolean
 }

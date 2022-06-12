@@ -3,7 +3,6 @@ package com.departementle_server.hugofab.data.datasource
 import com.departementle_server.hugofab.data.model.Departement
 import com.mongodb.client.model.Filters
 import com.mongodb.client.model.Updates
-import org.litote.kmongo.MongoOperator
 import org.litote.kmongo.coroutine.CoroutineDatabase
 import org.litote.kmongo.eq
 import java.util.*
@@ -40,7 +39,7 @@ class DepartementDataSourceImpl(
         return departementCollection.distinct<String>("name").toList()
     }
 
-    override suspend fun tryDepartement(departementName: String): Boolean {
+    override suspend fun guessDepartement(departementName: String): Boolean {
         return departementName == this.departement!!.name
     }
 
