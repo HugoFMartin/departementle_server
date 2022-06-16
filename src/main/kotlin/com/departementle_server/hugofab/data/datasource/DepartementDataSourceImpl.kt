@@ -1,6 +1,7 @@
 package com.departementle_server.hugofab.data.datasource
 
 import com.departementle_server.hugofab.data.model.Departement
+import com.departementle_server.hugofab.data.model.DepartementDTO
 import com.mongodb.client.model.Filters
 import com.mongodb.client.model.Updates
 import org.litote.kmongo.coroutine.CoroutineDatabase
@@ -17,7 +18,7 @@ class DepartementDataSourceImpl(
     private var dailyId: Int? = null
     private var lastGeneratedDate : Int? = null
 
-    override suspend fun getDailyDepartement(): Departement {
+    override suspend fun getDailyDepartementDTO(): DepartementDTO {
         val currentDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
 
         // If new day
@@ -32,7 +33,7 @@ class DepartementDataSourceImpl(
             // Update guessed value
             this.updateGuessedDepartement()
         }
-        return this.departement!!
+        return this.departement!!.toDepartementDTO()
     }
 
     override suspend fun getAllDepartementName(): List<String> {
@@ -42,7 +43,6 @@ class DepartementDataSourceImpl(
     override suspend fun guessDepartement(departementName: String): Boolean {
         return departementName == this.departement!!.name
     }
-
 
     private suspend fun updateGuessedDepartement() {
         departementCollection.updateOne(Filters.eq("id", this.departement!!.id), Updates.set("guessed", true) )

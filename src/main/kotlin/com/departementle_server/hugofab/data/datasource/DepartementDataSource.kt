@@ -1,10 +1,10 @@
 package com.departementle_server.hugofab.data.datasource
 
-import com.departementle_server.hugofab.data.model.Departement
+import com.departementle_server.hugofab.data.model.DepartementDTO
 
 interface DepartementDataSource {
 
-    suspend fun getDailyDepartement(): Departement
+    suspend fun getDailyDepartementDTO(): DepartementDTO
 
     suspend fun getAllDepartementName(): List<String>
 

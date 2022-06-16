@@ -11,8 +11,8 @@ fun Application.configureRouting(departementDataSourceImpl: DepartementDataSourc
 
     routing {
         get("/daily") {
-            val dailyDep = departementDataSourceImpl.getDailyDepartement()
-            call.respond(dailyDep)
+            val dailyDepDTO = departementDataSourceImpl.getDailyDepartementDTO()
+            call.respond(dailyDepDTO)
         }
         get("/departements") {
             val depNames = departementDataSourceImpl.getAllDepartementName()
