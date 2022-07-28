@@ -21,11 +21,8 @@ fun Application.configureRouting(departementDataSourceImpl: DepartementDataSourc
         post("/guess") {
             val departementGuess = call.receive<String>()
             val respond = departementDataSourceImpl.guessDepartement(departementGuess)
-            if (respond) {
-                call.respondText("guess right", status = HttpStatusCode.OK)
-            } else {
-                call.respondText("guess false", status = HttpStatusCode.Forbidden)
-            }
+            call.respond(status = HttpStatusCode.OK,respond)
+
         }
     }
 }

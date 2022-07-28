@@ -7,9 +7,10 @@ import org.bson.codecs.pojo.annotations.BsonId
 data class Departement (
     val name: String,
     val img: String,
-    val geojson: String,
     val id: String,
     val guessed: Boolean,
+    val lat: Double,
+    val long: Double,
     @BsonId
     val _id: String
 ) {

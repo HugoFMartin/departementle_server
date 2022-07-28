@@ -14,14 +14,4 @@ import io.ktor.server.testing.*
 import com.departementle_server.hugofab.plugins.*
 
 class ApplicationTest {
-    @Test
-    fun testRoot() = testApplication {
-        application {
-            configureRouting()
-        }
-        client.get("/").apply {
-            assertEquals(HttpStatusCode.OK, status)
-            assertEquals("Hello World!", bodyAsText())
-        }
-    }
 }
