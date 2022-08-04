@@ -3,7 +3,10 @@ package com.departementle_server.hugofab.data.datasource
 
 import com.departementle_server.hugofab.data.model.Departement
 import com.departementle_server.hugofab.data.model.DepartementDTO
+import com.departementle_server.hugofab.data.model.Guess
+import com.departementle_server.hugofab.data.response.DailyDepartementResponse
 import com.departementle_server.hugofab.data.response.GuessResponse
+import com.departementle_server.hugofab.data.utils.Direction
 import com.departementle_server.hugofab.data.utils.GeomUtils
 import com.mongodb.client.model.Filters
 import com.mongodb.client.model.Updates
@@ -24,13 +27,14 @@ class DepartementDataSourceImpl(
     /**
      *
      */
-    override suspend fun getDailyDepartementDTO(): DepartementDTO {
+    override suspend fun getDailyDepartement(): DailyDepartementResponse {
         val currentDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
 
         // If new day
         if( lastGeneratedDate == null || lastGeneratedDate!! != currentDay) {
             // Update current day
             lastGeneratedDate = currentDay
+            // Update dailyId
             // Get new id
             val departements = departementCollection.find(Departement::guessed eq false).toList()
             val dailyId = (departements.indices).random()
@@ -40,7 +44,7 @@ class DepartementDataSourceImpl(
             this.updateGuessedDepartement()
         }
 
-        return this.departement!!.toDepartementDTO()
+        return DailyDepartementResponse(this.departement!!.toDepartementDTO(), this.lastGeneratedDate!!)
     }
 
     /**
@@ -55,7 +59,11 @@ class DepartementDataSourceImpl(
      */
     override suspend fun guessDepartement(departementName: String): GuessResponse {
         if (departementName == this.departement!!.name) {
-            return GuessResponse(1,departementName,true,0,  "" )
+            return GuessResponse(
+                Guess(departementName,0, Direction.guessed),
+                true,
+                this.lastGeneratedDate!!,
+            )
         }
         val guessDepartement = departementCollection.find(Departement::name eq departementName).toList().first()
 
@@ -73,7 +81,11 @@ class DepartementDataSourceImpl(
             this.departement!!.lat
         )
 
-        return GuessResponse(1,departementName,false,distanceFromGuessDepartement,directionFromGuessDepartement)
+        return GuessResponse(
+            Guess(departementName,distanceFromGuessDepartement, directionFromGuessDepartement),
+            false,
+            this.lastGeneratedDate!!,
+        )
     }
 
     private suspend fun updateGuessedDepartement() {

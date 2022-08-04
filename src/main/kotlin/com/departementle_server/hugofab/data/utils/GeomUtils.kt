@@ -11,6 +11,7 @@ object Direction {
     const val northWest: String = "North-West"
     const val southEast: String = "South-East"
     const val southWest: String = "South-West"
+    const val guessed: String = "Guessed"
 }
 
 object GeomUtils {

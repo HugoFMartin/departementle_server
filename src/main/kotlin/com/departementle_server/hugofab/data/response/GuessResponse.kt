@@ -1,12 +1,11 @@
 package com.departementle_server.hugofab.data.response
 
+import com.departementle_server.hugofab.data.model.Guess
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class GuessResponse (
-    val guessId: Int,
-    val departement: String,
+    val guess: Guess?,
     val isValid: Boolean,
-    val distanceTo: Int,
-    val direction: String
+    val date: Int
 )
