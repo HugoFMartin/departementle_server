@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 data class GuessResponse (
     val guessId: Int,
     val departement: String,
-    val isGuessed: Boolean,
+    val isValid: Boolean,
     val distanceTo: Int,
     val direction: String
 )
