@@ -1,0 +1,1 @@
+web: ./build/install/departementle_server/bin/departementle_server

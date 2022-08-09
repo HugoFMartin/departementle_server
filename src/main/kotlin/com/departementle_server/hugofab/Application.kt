@@ -16,7 +16,7 @@ fun main() {
 
     val departementDataSourceImpl = DepartementControllerImpl(database)
 
-    embeddedServer(Netty, port = 8080, host = "192.168.1.85") {
+    embeddedServer(Netty, port = System.getenv("PORT").toInt()) {
         configureRouting(departementDataSourceImpl)
         configureSerialization()
         install(CORS) {
