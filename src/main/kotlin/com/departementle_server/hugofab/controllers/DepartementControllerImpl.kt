@@ -1,6 +1,5 @@
 package com.departementle_server.hugofab.controllers
 
-
 import com.departementle_server.hugofab.data.model.*
 import com.departementle_server.hugofab.utils.Direction
 import com.departementle_server.hugofab.utils.GeomUtils
@@ -20,10 +19,6 @@ class DepartementControllerImpl(
     private var id: Int = 0
     private var lastGeneratedDate: Int? = null
 
-
-    /**
-     *
-     */
     override suspend fun getDailyDepartement(): HttpResponse<DepartementDTO> {
         try {
             val currentDay = Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
@@ -48,9 +43,6 @@ class DepartementControllerImpl(
         }
     }
 
-    /**
-     *
-     */
     override suspend fun getAllDepartementName(): HttpResponse<List<String>> {
         try {
             return return HttpResponse.Success(departementCollection.distinct<String>("name").toList())
@@ -60,9 +52,6 @@ class DepartementControllerImpl(
 
     }
 
-    /**
-     *
-     */
     override suspend fun guessDepartement(requestBody: GuessRequest): HttpResponse<GuessDTO> {
         // Daily departement is not defined
         if (this.departement == null) {
