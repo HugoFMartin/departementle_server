@@ -1,16 +1,16 @@
-package com.departementle_server.hugofab.data.utils
+package com.departementle_server.hugofab.utils
 
 import kotlin.math.*
 
 object Direction {
-    const val north: String = "North"
-    const val south: String = "South"
-    const val east: String = "Est"
-    const val west: String = "West"
-    const val northEast: String = "North-East"
-    const val northWest: String = "North-West"
-    const val southEast: String = "South-East"
-    const val southWest: String = "South-West"
+    const val north: String = "N"
+    const val south: String = "S"
+    const val east: String = "E"
+    const val west: String = "W"
+    const val northEast: String = "NE"
+    const val northWest: String = "NW"
+    const val southEast: String = "SE"
+    const val southWest: String = "SW"
     const val guessed: String = "Guessed"
 }
 
@@ -32,7 +32,7 @@ object GeomUtils {
         val angle = atan2(dy, dx)
 
         val dgr = (toDeg(angle))
-        return this.getDirectionFromOrientation(dgr)
+        return getDirectionFromOrientation(dgr)
     }
 
     private fun getDirectionFromOrientation(dgr: Double): String {

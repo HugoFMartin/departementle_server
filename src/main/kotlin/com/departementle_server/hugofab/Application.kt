@@ -1,6 +1,6 @@
 package com.departementle_server.hugofab
 
-import com.departementle_server.hugofab.data.datasource.DepartementDataSourceImpl
+import com.departementle_server.hugofab.controllers.DepartementDataSourceImpl
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import com.departementle_server.hugofab.plugins.*

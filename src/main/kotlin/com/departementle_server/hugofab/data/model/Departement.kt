@@ -13,14 +13,4 @@ data class Departement (
     val long: Double,
     @BsonId
     val _id: String
-) {
-    fun toDepartementDTO(): DepartementDTO {
-        return DepartementDTO(this.name,this.img)
-    }
-}
-
-@Serializable
-data class DepartementDTO(
-    val name: String,
-    val img: String
 )
