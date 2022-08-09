@@ -1,6 +1,6 @@
 package com.departementle_server.hugofab.plugins
 
-import com.departementle_server.hugofab.controllers.DepartementDataSourceImpl
+import com.departementle_server.hugofab.controllers.DepartementControllerImpl
 import com.departementle_server.hugofab.data.model.GuessRequest
 import com.departementle_server.hugofab.data.model.HttpResponse
 import io.ktor.server.routing.*
@@ -9,7 +9,7 @@ import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.request.*
 
-fun Application.configureRouting(departementDataSourceImpl: DepartementDataSourceImpl) {
+fun Application.configureRouting(departementDataSourceImpl: DepartementControllerImpl) {
 
     routing {
         get("/departement") {

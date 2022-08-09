@@ -5,7 +5,7 @@ import com.departementle_server.hugofab.data.model.GuessDTO
 import com.departementle_server.hugofab.data.model.GuessRequest
 import com.departementle_server.hugofab.data.model.HttpResponse
 
-interface DepartementDataSource {
+interface DepartementController {
 
     suspend fun getDailyDepartement(): HttpResponse<DepartementDTO>
 

@@ -10,9 +10,9 @@ import org.litote.kmongo.coroutine.CoroutineDatabase
 import org.litote.kmongo.eq
 import java.util.*
 
-class DepartementDataSourceImpl(
+class DepartementControllerImpl(
     db: CoroutineDatabase
-): DepartementDataSource {
+): DepartementController {
 
     private val departementCollection = db.getCollection<Departement>()
 
