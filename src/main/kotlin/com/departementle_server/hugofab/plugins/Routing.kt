@@ -12,6 +12,12 @@ import io.ktor.server.request.*
 fun Application.configureRouting(departementDataSourceImpl: DepartementControllerImpl) {
 
     routing {
+        /**
+         * Method: GET
+         * Path: /departement
+         * Description: return daily departement
+         * Return: DepartementDTO
+         */
         get("/departement") {
             when(val respond = departementDataSourceImpl.getDailyDepartement()) {
                 is HttpResponse.Success -> {
@@ -22,6 +28,12 @@ fun Application.configureRouting(departementDataSourceImpl: DepartementControlle
                 }
             }
         }
+        /**
+         * Method: GET
+         * Path: /departements
+         * Description: return list of departements name
+         * Return: List<String>
+         */
         get("/departements") {
             when(val respond = departementDataSourceImpl.getAllDepartementName()) {
                 is HttpResponse.Success -> {
@@ -32,7 +44,13 @@ fun Application.configureRouting(departementDataSourceImpl: DepartementControlle
                 }
             }
         }
-
+        /**
+         * Method: POST
+         * Path: /guess
+         * Params: Object as GuessRequest
+         * Description: return if the departement guessed is the same as the daily one
+         * Return: GuessDTO
+         */
         post("/guess") {
             try {
                 val departementGuess = call.receive<GuessRequest>()
@@ -47,7 +65,6 @@ fun Application.configureRouting(departementDataSourceImpl: DepartementControlle
             } catch (err: Throwable) {
                 call.respondText(err.toString(), status = HttpStatusCode.UnprocessableEntity)
             }
-
         }
     }
 }
