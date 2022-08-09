@@ -44,10 +44,10 @@ class DepartementControllerImpl(
     }
 
     override suspend fun getAllDepartementName(): HttpResponse<List<String>> {
-        try {
-            return return HttpResponse.Success(departementCollection.distinct<String>("name").toList())
+        return try {
+            HttpResponse.Success(departementCollection.distinct<String>("name").toList())
         } catch (err: Throwable) {
-            return HttpResponse.Error("Error: Database error")
+            HttpResponse.Error("Error: Database error")
         }
 
     }
