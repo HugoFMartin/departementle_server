@@ -1,1 +1,1 @@
-web: ./build/install/departementle_server/bin/departementle_server
+web: ./build/install/com.departementle_server.hugofab.deparmentle_server/bin/com.departementle_server.hugofab.deparmentle_server
