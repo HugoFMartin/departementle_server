@@ -11,7 +11,7 @@ import org.litote.kmongo.coroutine.coroutine
 import org.litote.kmongo.reactivestreams.KMongo
 
 fun main() {
-    val client = KMongo.createClient().coroutine
+    val client = KMongo.createClient(System.getenv("MONGODB_URI")).coroutine
     val database = client.getDatabase("departement_db")
 
     val departementDataSourceImpl = DepartementControllerImpl(database)
