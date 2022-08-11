@@ -1,7 +1,8 @@
 # Departementle Server
 
 Server side for the **Departementle** game ( //url )
-Version: **1.0**
+<br/>
+Version **1.0**
 
 # Endpoints
 
