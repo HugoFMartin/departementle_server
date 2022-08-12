@@ -18,12 +18,23 @@ object GeomUtils {
 
 
     fun getDistanceFromTo(lat1: Double, long1: Double, lat2: Double, long2: Double): Int {
-        val theta = lat2 - lat1
-        var dist = sin(long1) * sin(long2) + cos(long1) * cos(long2) * cos(theta)
-        dist = acos(dist)
-        dist *= 60 * 1.1515
-        dist *= 1.609344
-        return dist.roundToInt()
+        //val theta = lat2 - lat1
+        //var dist = sin(long1) * sin(long2) + cos(long1) * cos(long2) * cos(theta)
+        //dist = acos(dist)
+        //dist *= 60 * 1.1515
+        //dist *= 1.609344
+        //return dist.roundToInt()
+        
+        val r = 6371; // Radius of the earth in km
+        val dLat = toRad(lat2-lat1)
+        val dLon = toRad(long2-long1)
+        val a =
+            sin(dLat/2) * sin(dLat/2) +
+                    cos(toRad(lat1)) * cos(toRad(lat2)) *
+                    sin(dLon/2) * sin(dLon/2)
+        val c = 2 * atan2(sqrt(a), sqrt(1-a))
+        val d = r * c
+        return d.roundToInt()
     }
 
     fun getDirectionFromTo(lat1: Double, long1: Double, lat2: Double, long2: Double): String {
@@ -66,5 +77,9 @@ object GeomUtils {
 
     private fun toDeg(value: Double): Double {
         return (value * 180) / Math.PI
+    }
+    
+    private fun toRad(deg: Double): Double {
+        return deg * (Math.PI/180)
     }
 }
